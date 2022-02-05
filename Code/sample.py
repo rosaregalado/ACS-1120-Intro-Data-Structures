@@ -27,7 +27,6 @@ def sample(histogram):
     # check if key occurence is greater than the dart random num
     if count >= dart: 
       # print('dart: ', (dart))
-      # return that key
       # print('count of key: ', count)
       return key
 
