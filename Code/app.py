@@ -5,7 +5,7 @@ from dictogram import Dictogram
 
 app = Flask(__name__)
 
-# histogram = None
+histogram = None
 
 
 def read_file(file_name):
