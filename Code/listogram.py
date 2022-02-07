@@ -2,6 +2,7 @@
 
 from __future__ import division, print_function  # Python 2 and 3 compatibility
 import random
+import sys
 
 
 class Listogram(list):
@@ -18,27 +19,71 @@ class Listogram(list):
             for word in word_list:
                 self.add_count(word)
 
+
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
+        for sets in self:
+            # if given word == key
+            if word == sets[0]:
+                # add key value to count
+                sets[1] += count
+                # end loop
+                break
+        else:
+            # append new [word,count] to histogram
+            self.types += 1
+            self.append([word, count])
+        self.tokens += count
+
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
         # TODO: Retrieve word frequency count
+        for key,value in self:
+            if word == key:
+                return value
+        return 0
 
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""
         # TODO: Check if word is in this histogram
+        for key,value in self:
+            if key == word:
+                return True
+        else:
+            return False
+
 
     def index_of(self, target):
         """Return the index of entry containing given target word if found in
         this histogram, or None if target word is not found."""
         # TODO: Implement linear search to find index of entry with target word
+        list_len = len(self)
+        for i in range(list_len):
+            # if current word is target
+            if self[i] == target:
+                return i
+        # target word not found
+        return -1
+
 
     def sample(self):
         """Return a word from this histogram, randomly sampled by weighting
         each word's probability of being chosen by its observed frequency."""
         # TODO: Randomly choose a word based on its frequency in this histogram
+        # dart = random number
+        dart = random.randint(1, self.tokens)
+        # initiate word count
+        count = 0
+        # iterate through keys in dictionary (key-value pairs)
+        for key,value in self: 
+            # increment count with key value
+            count += value
+            # check if key occurence is greater than the dart random num
+            if count >= dart: 
+                return key
+
 
 
 def print_histogram(word_list):
@@ -113,3 +158,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
