@@ -67,7 +67,7 @@ def histogram(source_text):
 
 
 if __name__ == "__main__":
-  text = read_file("source_text.txt")
+  text = read_file("book.txt")
   # print(text) 
   print(histogram(text))
   # print(histogram2(text))

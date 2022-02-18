@@ -31,6 +31,15 @@ def home():
   word = histogram.sample()
   return word
 
+# input: histogram
+# output: list of words
+
+# function takes a histogram
+  # iterate through the histogram
+  # create sentence = empty string
+  
+
+
 
 
 if __name__ == "__main__":
