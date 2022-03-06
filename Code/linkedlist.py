@@ -119,16 +119,24 @@ class LinkedList:
                 node = node.next
         return False
 
-    # def delete(self, item):
-    #     """Delete the given item from this linked list, or raise ValueError.
-    #     TODO: Best case running time: O(???) Why and under what conditions?
-    #     TODO: Worst case running time: O(???) Why and under what conditions?"""
+    def find_if_matches(self, matching_function):
+        # return an item from this linkedlist if it's present
+        node = self.head
+        while node:
+            if matching_function(node.data):
+                return node.data
+            node = node.next
+        return None
+
+
+    def delete(self, item):
+        """Delete the given item from this linked list, or raise ValueError.
+        # TODO: Best case running time: O(???) Why and under what conditions?
+        # TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find one whose data matches given item
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
-
-    def delete(self, item):
         if self.length():
             curr_node = self.head
             # Checks if the head node is the item
@@ -139,7 +147,6 @@ class LinkedList:
                 self.head = curr_node.next
                 # return nothing
                 return
-
             # Keep looping through nodes until value is found
             # This will only exit if value is found or the current_node.next == None
             runner = curr_node.next
@@ -149,7 +156,6 @@ class LinkedList:
                     return
                 curr_node = curr_node.next
                 runner = runner.next
-
             # This will always run when the above while loop has broken
             # meaning the current_node.next was equal to NONE
             # this also means you're at the last node
