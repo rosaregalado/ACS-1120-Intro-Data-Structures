@@ -15,14 +15,6 @@ app = Flask(__name__)
 #       s += line
 #     return s
 
-# def read_file(file):
-#   word_list = []
-#   with open(file, 'r') as f:
-#     for line in f:
-#       for word in line.split(' '):
-#         word_list.append(word)
-#     return word_list
-
 def read_file(file):
   with open(file, "r") as f:
     text = f.read()
