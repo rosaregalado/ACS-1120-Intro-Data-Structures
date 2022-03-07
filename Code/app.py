@@ -2,22 +2,41 @@
 from flask import Flask, render_template, redirect, request
 from dictogram import Dictogram
 from markov_chain import markov_chain, markov_dict, sample
-# import twitter
+# from histograms import read_file
+import twitter
 
 app = Flask(__name__)
 
 
-def read_file(file_name):
-  s = []
-  with open(file_name, 'r') as f:
-    for line in f:
-      for word in line:
-        s.append(word)
-  return s
+# def read_file(file):
+#   s = ''
+#   with open(file, 'r') as f:
+#     for line in f:
+#       s += line
+#     return s
 
-text = read_file('Code/corpus.txt')
-# tokens = tokenize(text)
-markov = markov_chain(text)
+# def read_file(file):
+#   word_list = []
+#   with open(file, 'r') as f:
+#     for line in f:
+#       for word in line.split(' '):
+#         word_list.append(word)
+#     return word_list
+
+def read_file(file):
+  with open(file, "r") as f:
+    text = f.read()
+    return text
+
+
+# input = "one fish two fish red fish blue fish"
+# output = {"one" -> 1, "fish" -> 4, "two" -> 1, "red" -> 1, "blue" -> 1}
+
+# markov_chain(markov_dict(text))
+
+text = read_file('corpus.txt')
+tokens = markov_dict(text)
+markov = markov_chain(tokens)
 
 # @app.before_first_request
 # def before_first_request():
@@ -31,12 +50,14 @@ markov = markov_chain(text)
 def home():
   """Route that returns a web page containing the generated text."""
   # return "<p>TODO: Return a word here!</p>"
-  output_sentence = (markov_chain(tokens))
-  return output_sentence
+  # sentence = "Hello"
+  sentence = (markov_chain(tokens))
+  return render_template('index.html', sentence=sentence)
 
 @app.route('/tweet', methods=['POST'])
 def tweet():
   status = request.form['sentence']
+  print(status)
   twitter.tweet(status)
   return redirect('/')
 

@@ -1,6 +1,6 @@
 import dotenv
 import os
-dotenv.load_dotenv('.env')
+dotenv.load_dotenv('../.env')
 from requests_oauthlib import OAuth1Session
 
 # twitter keys

@@ -1,5 +1,8 @@
-<blockquote>{{ sentence }}</blockquote>
-<form action="/tweet" method="post">
-  <input type="hidden" name="sentence" value="{{ sentence }}">
-  <button type="submit">Tweet this</button>
-</form>
+<h1 style="color: deepskyblue;">Tweet Generator</h1>
+<div style="display: flex; font-size: 20px; border: 3px solid black; padding: 1em; align-items: center;">
+  <blockquote>{{ sentence }}</blockquote>
+  <form action="/tweet" method="post">
+    <input type="hidden" name="sentence" value="{{ sentence }}">
+    <button type="submit" style="padding: .5em; font-size: 18px; color: white; background-color:deepskyblue">Tweet this!</button>
+  </form>
+</div>

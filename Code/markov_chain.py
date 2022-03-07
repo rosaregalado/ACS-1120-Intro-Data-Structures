@@ -1,10 +1,9 @@
 from dictogram import Dictogram
 import random
 from random import choice
-from tokenize import tokenize
 
 
-def markov_dict(dictionary):
+def markov_dict(text):
   word_list = text.split()
   markov_dict = {}
   words_range = range(len(word_list) - 2)
@@ -50,24 +49,23 @@ def sample(histogram):
 
 def markov_chain(dictionary):
   # grab keys
-  # dict_keys = []
-  # for key, value in dictionary.items():
-  #   dict_keys.append(key)
-  # convert keys to list
-  # dictionary = dictionary.keys()
-  dict_keys = [key for key, value in dictionary.items()]
-  word_list = list(dict_keys[random.randint(0, len(dict_keys) - 1)])
+  dict_keys = []
+  for key, value in dictionary.items():
+    dict_keys.append(key)
+    
+  # choose random key from list
+  word = list(dict_keys[random.randint(0, len(dict_keys) - 1)])
 
   for word_index in range(10):
-    tuple_key = tuple((word_list[index]) for index in range(word_index, word_index + 2))
-    if tuple_key in dictionary:
-      word_dictogram = dictionary[tuple_key]
+    pair = tuple((word[index]) for index in range(word_index, word_index + 2))
+    if pair in dictionary:
+      word_dictogram = dictionary[pair]
       next_word = sample(word_dictogram)
-      word_list.append(next_word)
+      word.append(next_word)
     else:
       break
   # return sentence
-  return " ".join(word_list)
+  return " ".join(word)
 
   
 
