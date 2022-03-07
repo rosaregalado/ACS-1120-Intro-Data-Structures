@@ -21,11 +21,6 @@ def read_file(file):
     return text
 
 
-# input = "one fish two fish red fish blue fish"
-# output = {"one" -> 1, "fish" -> 4, "two" -> 1, "red" -> 1, "blue" -> 1}
-
-# markov_chain(markov_dict(text))
-
 text = read_file('corpus.txt')
 tokens = markov_dict(text)
 markov = markov_chain(tokens)
