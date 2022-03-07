@@ -2,7 +2,6 @@
 from flask import Flask, render_template, redirect, request
 from dictogram import Dictogram
 from markov_chain import markov_chain, markov_dict, sample
-# from histograms import read_file
 import twitter
 
 app = Flask(__name__)
@@ -21,17 +20,16 @@ def read_file(file):
     return text
 
 
+@app.before_first_request
+def before_first_request():
+  """Runs only once at Flask startup"""
+  # TODO: Initialize your histogram, hash table, or markov chain here.
+  # word_list = read_file('Code/corpus.txt')
+  # histogram = Dictogram(word_list=word_list)
+  # return histogram
 text = read_file('corpus.txt')
 tokens = markov_dict(text)
 markov = markov_chain(tokens)
-
-# @app.before_first_request
-# def before_first_request():
-#   """Runs only once at Flask startup"""
-#   # TODO: Initialize your histogram, hash table, or markov chain here.
-#   word_list = read_file('Code/corpus.txt')
-#   histogram = Dictogram(word_list=word_list)
-#   return histogram
 
 @app.route("/")
 def home():
